@@ -62,7 +62,8 @@ async function searchTracks(track = null) {
 }
 
 window.onload = async () => {
-  // updateToken();
+  const infoGrid = document.getElementById("infoGrid");
+
   await searchTracks();
   document.getElementById("searchInpt").addEventListener("submit", (ev) => {
     ev.preventDefault();

@@ -3,9 +3,10 @@ const apiUrl = "https://api.spotify.com/v1";
 const clientId = "17e9f2b4f43f43e7b3e538b363373553";
 const clientSecret = "16a652d1e0b0453a887fb150ff598e83";
 
-const infoGrid = document.getElementById("infoGrid");
 let controller, signalId;
 let prevAudio;
+
+const loadElm = document.getElementById("loadAnimation");
 
 function getRandInt(a, b) {
   return Math.floor(Math.random() * (b - a) + a);
@@ -53,6 +54,7 @@ function setAbortTimeout(controller, signal, timeout) {
 }
 
 async function getData(url) {
+  loadElm.classList.remove("hide-animation");
   if (controller) {
     controller.abort("new request");
   }
@@ -80,8 +82,11 @@ async function getData(url) {
       return getData(url);
     }
     throw error;
+  } finally {
+    loadElm.classList.add("hide-animation");
   }
 }
+
 function getDataParams(subUrl, params) {
   params = new URLSearchParams(params);
   return getData(`${apiUrl}/${subUrl}?` + params);
