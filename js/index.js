@@ -57,7 +57,6 @@ async function searchTracks(track = null) {
     console.log(error);
     return;
   }
-  console.log(items);
   renderTracks(items);
 }
 

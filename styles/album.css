@@ -1,10 +1,10 @@
 .track-header {
-  background: rgb(92, 19, 181);
+  background: var(--lighter-purple);
   background: linear-gradient(
     0deg,
-    rgba(92, 19, 181, 1) 0%,
-    rgba(131, 64, 205, 1) 41%,
-    rgba(204, 134, 255, 1) 100%
+    var(--lighter-purple) 0%,
+    rgba(141, 65, 218, 1) 46%,
+    rgba(189, 111, 255, 1) 100%
   );
 }
 
@@ -40,12 +40,8 @@
 }
 
 .tracks-box {
-  background: rgb(92, 19, 181);
-  background: linear-gradient(
-    180deg,
-    rgba(92, 19, 181, 0.9) 0%,
-    rgba(236, 209, 255, 0) 46%
-  );
+  background: var(--purple);
+  background: linear-gradient(180deg, var(--purple) 0%, rgba(0, 0, 0, 0) 60%);
 }
 
 .track-grid {

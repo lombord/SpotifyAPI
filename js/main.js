@@ -36,10 +36,9 @@ async function updateToken() {
   } catch (error) {
     console.log(error);
   }
-  console.log(data);
   localStorage.setItem("token", data.access_token);
-  console.log(`Token has been updated: ${data.access_token}`);
-  setTimeout(updateToken, (data.expires_in - 2) * 1000);
+  console.log("Token has been updated");
+  setTimeout(updateToken, (data.expires_in - 10) * 1000);
   return data.access_token;
 }
 
@@ -48,7 +47,6 @@ function setAbortTimeout(controller, signal, timeout) {
     controller.abort("timeout");
   }, timeout);
   signal.onabort = (ev) => {
-    console.dir(ev);
     clearTimeout(timeout);
   };
 }
