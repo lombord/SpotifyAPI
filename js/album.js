@@ -44,7 +44,11 @@ async function renderHeader(album) {
 }
 
 function fillTracks(tracks, tracksGrid) {
-  tracks.forEach((track) => {
+  const timeFormat = new Intl.DateTimeFormat(undefined, {
+    minute: "numeric",
+    second: "2-digit",
+  });
+  tracks.forEach((track, i) => {
     const div = document.createElement("div");
     div.classList.add("track-grid");
 
@@ -58,12 +62,12 @@ function fillTracks(tracks, tracksGrid) {
       links += ` <a href="${link}" class="fw-light singer-link">${artist.name}</a>`;
     });
 
-    const date = new Date(0, 0, 0, 0, 0, 0, track.duration_ms);
-    const time = `${date.getMinutes()}:${date.getSeconds()}`;
+    let time = timeFormat.format(track.duration_ms);
+    time = time.replace(/^0/, "");
 
     div.innerHTML = `
     <h5 class="track-num">
-      <span>${track.track_number}</span><i class="fa-solid fa-play"></i>
+      <span>${i + 1}</span><i class="fa-solid fa-play"></i>
     </h5>
     <div>
       <h5>${track.name}</h5>

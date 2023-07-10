@@ -166,13 +166,6 @@
 .track-info {
 }
 
-.artist-name,
-.track-name {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
 .track-name {
   color: var(--light-green);
 }

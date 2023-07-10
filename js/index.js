@@ -27,8 +27,8 @@ function renderTracks(tracks) {
           />
       </div>
       <div class="track-info p-4">
-          <h3 class="track-name pb-2">${trackName}</h3>
-          <h5 class="artist-name">${artistName}</h5>
+          <h3 class="track-name text-ellipsis pb-2">${trackName}</h3>
+          <h5 class="artist-name text-ellipsis">${artistName}</h5>
       </div>
   `;
     setAlbumLink(albumLink, div.querySelector(".track-name"));
@@ -61,10 +61,10 @@ async function searchTracks(track = null) {
   renderTracks(items);
 }
 
-window.onload = async () => {
+window.onload = () => {
   const infoGrid = document.getElementById("infoGrid");
 
-  await searchTracks();
+  searchTracks();
   document.getElementById("searchInpt").addEventListener("submit", (ev) => {
     ev.preventDefault();
     const {

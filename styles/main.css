@@ -80,3 +80,9 @@ p {
   max-width: 1000px;
   min-width: var(--col-size);
 }
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
