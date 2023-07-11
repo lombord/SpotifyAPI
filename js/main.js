@@ -73,6 +73,7 @@ async function getData(url) {
     }
     data = await response.json();
     controller.abort("Succeeded");
+    loadElm.classList.add("hide-animation");
     return data;
   } catch (error) {
     if (error.message === "token") {
@@ -80,8 +81,6 @@ async function getData(url) {
       return getData(url);
     }
     throw error;
-  } finally {
-    loadElm.classList.add("hide-animation");
   }
 }
 
