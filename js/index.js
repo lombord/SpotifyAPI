@@ -68,7 +68,9 @@ window.onload = () => {
     ev.preventDefault();
     const {
       searchKey: { value: searchKey },
+      filter: { value: filter },
     } = ev.target;
-    searchTracks(searchKey);
+    console.log(filter, searchKey);
+    searchTracks(`${filter}:${searchKey}`);
   });
 };
