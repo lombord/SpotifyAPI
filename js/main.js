@@ -73,6 +73,7 @@ async function getData(url) {
     }
     data = await response.json();
     controller.abort("Succeeded");
+    console.log(data);
     loadElm.classList.add("hide-animation");
     return data;
   } catch (error) {
@@ -109,5 +110,3 @@ function setAudio(div, preview_url, timeout) {
     prevAudio.pause();
   });
 }
-
-

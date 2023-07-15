@@ -6,8 +6,8 @@ function setAlbumLink(albumLink, elm) {
   });
 }
 
-function renderTracks(tracks) {
-  infoGrid.innerHTML = "";
+function renderTracks(tracks, clean = false) {
+  if (clean) infoGrid.innerHTML = "";
 
   tracks.forEach((track) => {
     const div = document.createElement("a");
@@ -36,20 +36,18 @@ function renderTracks(tracks) {
   });
 }
 
-async function searchTracks(track = null) {
-  let offset = 0;
+async function searchTracks(track = null, limit = 50, offset = 0) {
+  loadBtn.classList.add("load-hidden");
   if (!track) {
     track = getRandLetter();
     offset = getRandInt(1, 949);
   }
-  let items;
+  let tracks;
   try {
-    ({
-      tracks: { items },
-    } = await getDataParams("search", {
+    ({ tracks } = await getDataParams("search", {
       q: track,
       type: ["track"],
-      limit: 50,
+      limit,
       offset,
       include_external: "audio",
     }));
@@ -57,11 +55,23 @@ async function searchTracks(track = null) {
     console.log(error);
     return;
   }
-  renderTracks(items);
+  const { items } = tracks;
+  renderTracks(items, offset === 0);
+  if (offset < tracks.total) {
+    loadBtn.classList.remove("load-hidden");
+    loadBtn.addEventListener(
+      "click",
+      () => {
+        searchTracks(track, limit, offset + 50);
+      },
+      { once: true }
+    );
+  }
 }
 
 window.onload = () => {
   const infoGrid = document.getElementById("infoGrid");
+  const loadBtn = document.getElementById("loadBtn");
 
   searchTracks();
   document.getElementById("searchInpt").addEventListener("submit", (ev) => {

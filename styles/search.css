@@ -28,13 +28,12 @@
   color: var(--light-green);
 }
 
-
 .searchInpt {
   flex: 1;
   border: 0;
   background-color: var(--white);
   color: var(--purple);
-  padding: 0.6em .7em;
+  padding: 0.6em 0.7em;
 }
 
 .searchInpt::placeholder {
@@ -199,4 +198,26 @@
 
 .artist-name {
   color: var(--white-purple);
+}
+
+.load-div {
+  text-align: right;
+}
+
+.load-btn {
+  border: none;
+  background-color: var(--purple);
+  box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease;
+  color: var(--light-blue);
+}
+
+.load-btn:hover {
+  background-color: var(--lighter-purple);
+  box-shadow: 0 0 0.5em var(--lighter-purple);
+  color: var(--light-green);
+}
+
+.load-hidden {
+  display: none;
 }
