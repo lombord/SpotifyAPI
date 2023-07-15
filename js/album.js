@@ -49,10 +49,9 @@ function fillTracks(tracks, tracksGrid) {
     second: "2-digit",
   });
   tracks.forEach((track, i) => {
-    const div = document.createElement("div");
+    const div = document.createElement("a");
     div.classList.add("track-grid");
-
-    setExternalLink(div, track.external_urls.spotify);
+    div.href = track.external_urls.spotify;
 
     track.preview_url && setAudio(div, track.preview_url, 500);
 

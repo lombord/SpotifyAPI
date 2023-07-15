@@ -1,22 +1,29 @@
 function setAlbumLink(albumLink, elm) {
-  elm.addEventListener("click", (ev) => {
-    ev.stopPropagation();
-    localStorage.setItem("albumLink", albumLink);
-    window.location.assign("/album.html");
-  });
+  elm.addEventListener(
+    "click",
+    (ev) => {
+      ev.stopPropagation();
+      ev.preventDefault();
+      localStorage.setItem("albumLink", albumLink);
+      window.location.assign("/album.html");
+    },
+    {
+      capture: 1,
+    }
+  );
 }
 
 function renderTracks(tracks) {
   infoGrid.innerHTML = "";
 
   tracks.forEach((track) => {
-    const div = document.createElement("div");
+    const div = document.createElement("a");
     const imgUrl = track.album.images[0].url;
     const artistName = track.artists[0].name;
     const trackName = track.name;
     const trackUrl = track.external_urls.spotify;
     const albumLink = track.album.href;
-    setExternalLink(div, trackUrl);
+    div.href = trackUrl;
     track.preview_url && setAudio(div, track.preview_url, 1000);
     div.innerHTML = `
       <div class="imgBox">
@@ -71,6 +78,6 @@ window.onload = () => {
       filter: { value: filter },
     } = ev.target;
     console.log(filter, searchKey);
-    searchTracks(`${filter}:${searchKey}`);
+    searchTracks(filter ? `${filter}:${searchKey}` : searchKey);
   });
 };

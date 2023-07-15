@@ -71,6 +71,7 @@
   -ms-transition: var(--transition);
   transition: var(--transition);
   overflow: hidden;
+  text-decoration: none;
 }
 
 .info-grid > *:hover {

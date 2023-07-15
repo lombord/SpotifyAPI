@@ -110,9 +110,4 @@ function setAudio(div, preview_url, timeout) {
   });
 }
 
-function setExternalLink(div, link) {
-  div.addEventListener("click", () => {
-    console.log(link);
-    window.location.assign(link);
-  });
-}
+
