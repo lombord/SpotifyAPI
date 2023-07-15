@@ -75,22 +75,81 @@
 
 .tracks-grid > *:hover {
   border-radius: 0.3em;
-  background: rgb(92, 19, 181);
-  background: linear-gradient(
-    0deg,
-    rgba(92, 19, 181, 0.9) 0%,
-    rgba(192, 127, 255, 0.6) 100%
-  );
+  background: var(--lighter-purple);
+  background: linear-gradient(270deg, var(--pink), var(--lighter-purple));
+  background-size: 400% 400%;
+
+  -webkit-animation: track-gradient 3s ease infinite;
+  -moz-animation: track-gradient 3s ease infinite;
+  -o-animation: track-gradient 3s ease infinite;
+  animation: track-gradient 3s ease infinite;
+}
+
+@-webkit-keyframes track-gradient {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
+}
+@-moz-keyframes track-gradient {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
+}
+@-o-keyframes track-gradient {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
+}
+@keyframes track-gradient {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
 }
 
 .track-num > i {
   display: none;
+  animation: play-animation 1.47s ease infinite alternate;
 }
 .tracks-grid > *:hover .track-num > i {
   display: inline-block;
 }
+
 .tracks-grid > *:hover .track-num > span {
   display: none;
+}
+
+@keyframes play-animation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .singers-links {
