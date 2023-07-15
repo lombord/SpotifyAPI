@@ -74,7 +74,7 @@ function fillTracks(tracks, tracksGrid) {
         ${links}
       </div>
     </div>
-    <p class="fw-light">44,115,316</p>
+    <p class="fw-light">${track.explicit ? "Yes" : "No"}</p>
     <h6>${time}</h6>
     `;
 
