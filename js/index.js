@@ -18,6 +18,7 @@ function renderTracks(tracks, clean = false) {
     const albumLink = track.album.href;
     div.href = trackUrl;
     track.preview_url && setAudio(div, track.preview_url, 1000);
+    div.title = trackName;
     div.innerHTML = `
       <div class="imgBox">
           <img
@@ -27,8 +28,8 @@ function renderTracks(tracks, clean = false) {
           />
       </div>
       <div class="track-info p-4">
-          <a class="track-name text-ellipsis pb-2 h3">${trackName}</a>
-          <h5 class="artist-name text-ellipsis">${artistName}</h5>
+          <a title="${trackName}" class="track-name text-ellipsis pb-2 h3">${trackName}</a>
+          <h5 title="${artistName}" class="artist-name text-ellipsis">${artistName}</h5>
       </div>
   `;
     setAlbumLink(albumLink, div.querySelector(".track-name"));
