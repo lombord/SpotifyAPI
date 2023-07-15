@@ -150,6 +150,8 @@
 
 .track-name {
   color: var(--light-green);
+  text-decoration: none;
+  display: block;
 }
 
 .track-name:hover {

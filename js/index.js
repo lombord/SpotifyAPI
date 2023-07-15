@@ -1,16 +1,9 @@
 function setAlbumLink(albumLink, elm) {
-  elm.addEventListener(
-    "click",
-    (ev) => {
-      ev.stopPropagation();
-      ev.preventDefault();
-      localStorage.setItem("albumLink", albumLink);
-      window.location.assign("/album.html");
-    },
-    {
-      capture: 1,
-    }
-  );
+  elm.href = "/album.html";
+  elm.addEventListener("mousedown", (ev) => {
+    ev.stopPropagation();
+    localStorage.setItem("albumLink", albumLink);
+  });
 }
 
 function renderTracks(tracks) {
@@ -34,7 +27,7 @@ function renderTracks(tracks) {
           />
       </div>
       <div class="track-info p-4">
-          <h3 class="track-name text-ellipsis pb-2">${trackName}</h3>
+          <a class="track-name text-ellipsis pb-2 h3">${trackName}</a>
           <h5 class="artist-name text-ellipsis">${artistName}</h5>
       </div>
   `;
