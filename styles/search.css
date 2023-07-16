@@ -110,10 +110,16 @@
   transition: var(--transition);
   overflow: hidden;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .info-grid > *:hover {
   transform: scale(1.06);
+  border-radius: 0.5em;
+}
+
+.info-grid > .track-div:hover {
   --animation: boxScale 1s 1s ease-out infinite alternate;
   -webkit-animation: var(--animation);
   -moz-animation: var(--animation);
@@ -121,7 +127,6 @@
   -ms-animation: var(--animation);
   animation: var(--animation);
   box-shadow: 0 0 1em var(--light-purple);
-  border-radius: 0.5em;
 }
 
 @keyframes boxScale {
@@ -136,10 +141,15 @@
 }
 
 .imgBox {
+  flex: 1;
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+}
+
+.imgBox > img {
+  max-height: 291px;
+  object-fit: cover;
 }
 
 .imgBox::before {
@@ -154,6 +164,7 @@
 }
 
 .imgBox::before {
+  align-self: center;
   position: absolute;
   font-size: 2rem;
   color: var(--light-green);

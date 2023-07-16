@@ -168,5 +168,6 @@
 
 .singer-link:hover {
   text-decoration: underline;
+  color: var(--white-purple);
   opacity: 1;
 }

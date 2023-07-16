@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/loader.css" />
     <link rel="stylesheet" href="styles/album.css" />
+    <link rel="stylesheet" href="styles/playlist.css" />
   </head>
   <body>
     <section id="loadAnimation" class="load-animation hide-animation">
@@ -37,7 +38,7 @@
           <div class="imgBox col-sm-4 col-10">
             <img
               id="albumImg"
-              src="https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d"
+              src="https://charts-images.scdn.co/assets/locale_en/regional/daily/region_global_large.jpg"
               class="img-fluid"
               alt=""
             />
@@ -45,52 +46,72 @@
           <div
             class="col-sm-7 px-3 px-sm-0 text-center text-sm-start d-flex flex-column gap-3"
           >
-            <h5 id="albumType" class="fw-bolder">Album</h5>
-            <h1 id="albumName" class="fw-bold display-4">All Too Well</h1>
+            <h5 id="albumType" class="fw-bolder">Public Playlist</h5>
+            <h1 id="albumName" class="fw-bold display-4">Top 50 - Global</h1>
+            <p id="description" class="playlist-about">
+              Your daily update of the most played tracks right now - Global.
+            </p>
             <div
               class="mb-1 d-flex align-items-center gap-2 justify-content-center justify-content-sm-start text-start"
             >
               <div class="col-1 p-0 artist-img-box">
                 <img
                   id="artistImg"
-                  src="https://i.scdn.co/image/ab6761610000e5ebf173136b94ae2f75f49f8b2b"
+                  src="https://i.scdn.co/image/ab6775700000ee8555c25988a6ac314394d3fbf5"
                   class="rounded-circle"
                   alt=""
                 />
               </div>
-              <p id="albumInfo" class="p-0 text-ellipsis fw-bold">
-                <a class="artist-link" href="">Taylor Swift</a> &#183; 2016
+              <p id="albumInfo" class="p-0 text-ellipsis">
+                <a class="fw-bold artist-link" href="">Spotify</a> &#183;
+                17,410,659 likes &#183; 50 songs
               </p>
             </div>
           </div>
         </div>
       </div>
     </section>
+
     <section class="album-tracks text-white p-4 tracks-box">
       <div class="container p-0">
-        <div class="track-grid title-grid">
+        <div class="track-grid playlist-grid title-grid">
           <p class="text-white-50">#</p>
           <h6 class="fw-light text-white-50">Title</h6>
-          <h6 class="fw-light text-white-50">Explicit</h6>
+          <h6 class="fw-light text-white-50">Album</h6>
+          <h6 class="fw-light text-white-50">Added By</h6>
           <h6 class="text-white-50">
             <i class="fa-regular fa-clock"></i>
           </h6>
         </div>
         <div id="tracksGrid" class="tracks-grid">
-          <div class="track-grid">
+          <div class="track-grid playlist-grid align-items-center">
             <h5 class="track-num">
               <span>1</span><i class="fa-solid fa-play"></i>
             </h5>
-            <div class="text-ellipsis">
-              <h5 class="text-ellipsis">Intro</h5>
-              <div class="singers-links text-ellipsis">
-                <a href="#" class="fw-light singer-link">Taylor Swift</a>
-                <a href="#" class="fw-light singer-link">Taylor Swift</a>
-                <a href="#" class="fw-light singer-link">Taylor Swift</a>
+            <div class="row gx-3 align-items-center text-ellipsis">
+              <div class="col-md-2 col-sm-3 col-4">
+                <img
+                  class="img-fluid"
+                  src="https://i.scdn.co/image/ab67616d0000b273bf5cce5a0e1ed03a626bdd74"
+                  alt=""
+                />
+              </div>
+              <div class="col text-ellipsis">
+                <h5 class="text-ellipsis">IntroIntroIntro</h5>
+                <div class="singers-links text-ellipsis">
+                  <a href="#" class="fw-light singer-link">Taylor Swift</a>
+                  <a href="#" class="fw-light singer-link">Taylor Swift</a>
+                  <a href="#" class="fw-light singer-link">Taylor Swift</a>
+                  <a href="#" class="fw-light singer-link">Taylor Swift</a>
+                  <a href="#" class="fw-light singer-link">Taylor Swift</a>
+                </div>
               </div>
             </div>
-            <p class="fw-light">44,115,316</p>
-            <h6>1:14</h6>
+            <a href="#" class="fw-light col-link text-ellipsis"
+              >Some Album Some AlbumAlbumAlbumAlbum</a
+            >
+            <p href="#" class="fw-light text-ellipsis">Dec 8, 2019</p>
+            <h6 class="fw-light">1:14</h6>
           </div>
         </div>
       </div>
@@ -100,6 +121,6 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="js/album.js"></script>
+    <script type="module" src="js/playlist.js"></script>
   </body>
 </html>

@@ -1,7 +1,33 @@
+import { setAudio, getData } from "./main.js";
+
 const defaultUrl = "https://api.spotify.com/v1/albums/1typPCwqyXMfFpvDZAyKew";
 
 async function getArtistImage(link) {
-  return (await getData(link)).images[0].url;
+  try {
+    return (await getData(link)).images[0].url;
+  } catch (error) {
+    return "https://i.scdn.co/image/ab6761610000517458efbed422ab46484466822b";
+  }
+}
+
+function getLinks(artists) {
+  let links = "";
+  artists.forEach((artist) => {
+    const link = artist.external_urls.spotify;
+    links += ` <a href="${link}" class="fw-light singer-link">${artist.name}</a>`;
+  });
+  return links;
+}
+
+function getCorrectTime(time_ms) {
+  const timeFormat = new Intl.DateTimeFormat(undefined, {
+    minute: "numeric",
+    second: "2-digit",
+  });
+
+  let time = timeFormat.format(time_ms);
+  time = time.replace(/^0/, "");
+  return time;
 }
 
 async function renderHeader(album) {
@@ -33,6 +59,8 @@ async function renderHeader(album) {
   artistImgElm.src = artistImgUrl;
   artistImgElm.alt = artist.name;
 
+  document.title = name;
+
   albumInfoElm.innerHTML = `
   <span class="fw-bold">
   <a class="artist-link" href="${artist.external_urls.spotify}">
@@ -44,10 +72,6 @@ async function renderHeader(album) {
 }
 
 function fillTracks(tracks, tracksGrid) {
-  const timeFormat = new Intl.DateTimeFormat(undefined, {
-    minute: "numeric",
-    second: "2-digit",
-  });
   tracks.forEach((track, i) => {
     const div = document.createElement("a");
     div.classList.add("track-grid");
@@ -55,22 +79,17 @@ function fillTracks(tracks, tracksGrid) {
 
     track.preview_url && setAudio(div, track.preview_url, 500);
 
-    let links = "";
-    track.artists.forEach((artist) => {
-      const link = artist.external_urls.spotify;
-      links += ` <a href="${link}" class="fw-light singer-link">${artist.name}</a>`;
-    });
+    const links = getLinks(track.artists);
 
-    let time = timeFormat.format(track.duration_ms);
-    time = time.replace(/^0/, "");
+    const time = getCorrectTime(track.duration_ms);
 
     div.innerHTML = `
     <h5 class="track-num">
       <span>${i + 1}</span><i class="fa-solid fa-play"></i>
     </h5>
-    <div>
-      <h5>${track.name}</h5>
-      <div class="singers-links">
+    <div class="text-ellipsis">
+      <h5 class="text-ellipsis">${track.name}</h5>
+      <div class="singers-links text-ellipsis">
         ${links}
       </div>
     </div>
@@ -98,3 +117,5 @@ async function renderPage() {
 window.onload = async () => {
   await renderPage();
 };
+
+export { getLinks, getCorrectTime, getArtistImage };

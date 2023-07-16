@@ -110,3 +110,6 @@ function setAudio(div, preview_url, timeout) {
     prevAudio.pause();
   });
 }
+
+
+export {getRandLetter, getRandInt, setAudio, getData, getDataParams}

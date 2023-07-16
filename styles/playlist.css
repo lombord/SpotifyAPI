@@ -1,0 +1,24 @@
+.playlist-grid {
+  grid-template-columns: 0.2fr 3fr 2fr 1fr .5fr;
+}
+
+.playlist-grid > :nth-child(3) {
+  text-align: start;
+}
+
+.playlist-grid > :nth-child(4) {
+  text-align: start;
+}
+.playlist-grid > :nth-child(5) {
+  text-align: end;
+}
+
+.col-link{
+  color: var(--light-purple);
+  text-decoration: none;
+}
+
+.col-link:hover{
+  color: var(--white-purple);
+  text-decoration: underline;
+}

@@ -1,0 +1,43 @@
+.playlist-op {
+  color: var(--green);
+}
+
+.info-grid > .playlist-div {
+  background-color: var(--black);
+}
+
+.info-grid > .playlist-div:hover {
+  box-shadow: 0 0 1em var(--light-green3);
+}
+
+.playlist-imgbox::before {
+  color: var(--black);
+  background-color: var(--green);
+}
+
+.info-grid > *:hover .playlist-imgbox::before {
+  animation: none;
+}
+
+.playlist-name {
+  display: block;
+  text-decoration: none;
+  color: var(--green);
+}
+
+.playlist-name:hover{
+  text-decoration: underline;
+}
+
+.playlist-owner {
+  color: var(--medium-green);
+}
+.playlist-owner > a {
+  color: var(--medium-green);
+
+  text-decoration: none;
+}
+.playlist-owner > a:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
