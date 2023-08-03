@@ -3,7 +3,6 @@ const apiUrl = "https://api.spotify.com/v1";
 const clientId = "17e9f2b4f43f43e7b3e538b363373553";
 const clientSecret = "16a652d1e0b0453a887fb150ff598e83";
 
-let controller, signalId;
 let prevAudio;
 
 const loadElm = document.getElementById("loadAnimation");
@@ -42,28 +41,13 @@ async function updateToken() {
   return data.access_token;
 }
 
-function setAbortTimeout(controller, signal, timeout) {
-  signalId = setTimeout(() => {
-    controller.abort("timeout");
-  }, timeout);
-  signal.onabort = (ev) => {
-    clearTimeout(timeout);
-  };
-}
-
-async function getData(url) {
+async function getData(url, signal) {
   loadElm.classList.remove("hide-animation");
-  if (controller) {
-    controller.abort("new request");
-  }
-  controller = new AbortController();
-  const { signal } = controller;
-  setAbortTimeout(controller, signal, 5000);
   let data;
   try {
     const response = await fetch(url, {
-      signal,
       method: "GET",
+      signal,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -72,7 +56,6 @@ async function getData(url) {
       throw new Error("token");
     }
     data = await response.json();
-    controller.abort("Succeeded");
     console.log(data);
     loadElm.classList.add("hide-animation");
     return data;
@@ -85,9 +68,9 @@ async function getData(url) {
   }
 }
 
-function getDataParams(subUrl, params) {
+function getDataParams(subUrl, params, signal) {
   params = new URLSearchParams(params);
-  return getData(`${apiUrl}/${subUrl}?` + params);
+  return getData(`${apiUrl}/${subUrl}?` + params, signal);
 }
 
 function setAudio(div, preview_url, timeout) {
@@ -111,5 +94,4 @@ function setAudio(div, preview_url, timeout) {
   });
 }
 
-
-export {getRandLetter, getRandInt, setAudio, getData, getDataParams}
+export { getRandLetter, getRandInt, setAudio, getData, getDataParams };

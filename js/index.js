@@ -1,5 +1,7 @@
 import { getRandLetter, getRandInt, setAudio, getDataParams } from "./main.js";
 
+let controller = new AbortController();
+
 function setItemLink(elm, link, path, key) {
   elm.href = path;
   elm.addEventListener("mousedown", (ev) => {
@@ -18,7 +20,6 @@ function renderTracks(tracks) {
     const albumLink = track.album.href;
     div.href = trackUrl;
     track.preview_url && setAudio(div, track.preview_url, 1000);
-    div.title = trackName;
     div.classList.add("track-div");
     div.innerHTML = `
       <div class="imgBox">
@@ -91,6 +92,24 @@ function renderPlaylists(playlists) {
   });
 }
 
+function setAbortTimeout(controller, signal, timeout) {
+  const signalId = setTimeout(() => {
+    controller.abort("timeout");
+  }, timeout);
+  signal.onabort = () => {
+    console.log(signal.reason);
+    clearTimeout(signalId);
+  };
+}
+
+function setAbortController(timeout = 5000) {
+  controller.abort("New request");
+  controller = new AbortController();
+  const { signal } = controller;
+  setAbortTimeout(controller, signal, timeout);
+  return signal;
+}
+
 async function searchItems(
   type = "track",
   query = null,
@@ -99,6 +118,8 @@ async function searchItems(
   offset = 0
 ) {
   loadBtn.classList.add("load-hidden");
+  const signal = setAbortController();
+
   if (!query) {
     query = getRandLetter();
     offset = getRandInt(1, 949);
@@ -107,18 +128,23 @@ async function searchItems(
   let data;
   try {
     data = (
-      await getDataParams("search", {
-        q: query,
-        type,
-        limit,
-        offset,
-        include_external: "audio",
-      })
+      await getDataParams(
+        "search",
+        {
+          q: query,
+          type,
+          limit,
+          offset,
+          include_external: "audio",
+        },
+        signal
+      )
     )[type + "s"];
   } catch (error) {
     console.log(error);
     return;
   }
+  controller.abort("Success");
   const { items } = data;
   if (offset === 0) infoGrid.innerHTML = "";
   renderFunc(items);
